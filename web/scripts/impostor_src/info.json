@@ -1,0 +1,22 @@
+{
+ "tree_round": {
+  "size": 12.755,
+  "height": 9.569
+ },
+ "poplar": {
+  "size": 16.823,
+  "height": 16.176
+ },
+ "shrub_0": {
+  "size": 1.824,
+  "height": 1.754
+ },
+ "shrub_1": {
+  "size": 2.143,
+  "height": 1.935
+ },
+ "grass": {
+  "size": 1.935,
+  "height": 0.831
+ }
+}

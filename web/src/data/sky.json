@@ -1,0 +1,32 @@
+{
+  "night": {
+    "id": "rogland_clear_night",
+    "u": 0.6148,
+    "elevation": 70.6,
+    "peak": 224
+  },
+  "dawn": {
+    "id": "qwantani_dawn_puresky",
+    "u": 0.6008,
+    "elevation": 10.45,
+    "peak": 255
+  },
+  "noon": {
+    "id": "kloofendal_48d_partly_cloudy_puresky",
+    "u": 0.6002,
+    "elevation": 49.14,
+    "peak": 255
+  },
+  "sunset": {
+    "id": "qwantani_sunset_puresky",
+    "u": 0.603,
+    "elevation": 4.76,
+    "peak": 239
+  },
+  "overcast": {
+    "id": "kloofendal_overcast_puresky",
+    "u": 0.5896,
+    "elevation": 22.7,
+    "peak": 255
+  }
+}

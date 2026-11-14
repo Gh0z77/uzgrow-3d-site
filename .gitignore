@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env*
+!.env.example
+.claude/
+.vercel/
+*.blend1
+*.log
+# kompaniya ichki hujjatlari (smeta, chizmalar) ochiq repoga chiqmaydi
+hujjatlar/
+# Blender eksporti web/public/models ga nusxalanadi
+blender/out/
