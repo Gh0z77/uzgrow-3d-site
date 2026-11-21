@@ -5,7 +5,7 @@ import { growProgress, timeOfDay, xray } from './story'
 import { range, scroll, smooth } from '../scroll'
 import SKY from '../data/sky.json'
 import { weather } from './weather'
-import { SETTINGS, quality } from './quality'
+import { SETTINGS, lite, quality } from './quality'
 
 /**
  * Vaqt o'tishi: tun (0) → tong (1) → ertalab (2). Hammasi bitta p dan hisoblanadi,
@@ -95,7 +95,8 @@ type SkyName = 'night' | 'dawn' | 'noon' | 'sunset'
 const SKY_GAIN: Record<SkyName, number> = { night: 0.42, dawn: 1.15, noon: 1.2, sunset: 1.2 }
 const skyTex = {} as Record<SkyName, THREE.Texture>
 let skyLoaded = 0
-const skyTail = quality.isPhone ? '-m' : ''
+// 4096 px osmon GPU'da ~37 MB; yengil rejimda 2048 px
+const skyTail = lite ? '-m' : ''
 // Keyingilari progressga kirmaydi: birinchi ekranni kutdirmasin
 const lateLoader = new THREE.TextureLoader(new THREE.LoadingManager())
 
@@ -226,7 +227,7 @@ function SkyEnvironment() {
     const x = xray()
     const t = state.clock.elapsedTime
     const changed = Math.abs(p - rig.p) > 0.012 || Math.abs(x - rig.x) > 0.03 || Math.abs(weather.cloud - rig.cloud) > 0.03 || rig.loaded !== skyLoaded
-    if (!changed || (t - rig.at < 0.3 && rig.rt)) return
+    if (!changed || (t - rig.at < (lite ? 1 : 0.3) && rig.rt)) return
     rig.p = p
     rig.x = x
     rig.cloud = weather.cloud
@@ -340,7 +341,7 @@ export function Atmosphere() {
     light.shadow.autoUpdate = false
     shadowState.warm++
     // Scroll paytida har ikkinchi kadrda: soya bir kadr kechikishi ko'rinmaydi, soya o'tishi esa ikki baravar kam
-    if ((scroll.current !== shadowState.scroll && shadowState.warm % 2 === 0) || shadowState.warm < 180) {
+    if ((scroll.current !== shadowState.scroll && shadowState.warm % (lite ? 3 : 2) === 0) || shadowState.warm < 180) {
       light.shadow.needsUpdate = true
       shadowState.scroll = scroll.current
     }

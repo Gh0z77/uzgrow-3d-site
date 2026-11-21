@@ -10,7 +10,7 @@ import { Atmosphere } from './atmosphere'
 import { Site } from './Site'
 import { Dust, Stars } from './particles'
 import { Precipitation } from './precipitation'
-import { NEXT_TIER, SETTINGS, quality } from './quality'
+import { NEXT_TIER, SETTINGS, lite, quality } from './quality'
 import { updateWeather } from './weather'
 import { Warmup } from './warmup'
 
@@ -95,9 +95,9 @@ export default function Experience() {
       <ScrollDriver />
       {watch && <PerformanceMonitor bounds={(hz) => [Math.min(hz, 60) * 0.72, Math.min(hz, 60) * 0.92]} flipflops={2} onDecline={lower} />}
       <Atmosphere />
-      <Stars />
+      <Stars count={lite ? 900 : 2200} />
       <Site />
-      <Dust />
+      <Dust count={lite ? 600 : 1600} />
       <Precipitation />
       <EffectComposer multisampling={s.msaa}>
         {/* Ambient occlusion: fermalar, ustun taglari, o‘simliklar orasidagi yumshoq soyalar — realizmning asosiy manbai */}

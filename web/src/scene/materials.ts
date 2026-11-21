@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { weatherUniforms } from './weather'
-import { quality } from './quality'
+import { lite } from './quality'
 
 /**
  * Haqiqiy PBR teksturalar (Poly Haven, CC0; web/scripts/fetch-assets.mjs). Blender har mesh'ga metrli UV yozadi
@@ -15,7 +15,7 @@ export function tex(path: string, srgb: boolean, size = 1) {
   let t = cache.get(key)
   if (!t) {
     // Telefonda yarim o'lchamli nusxa: yuklash ~4 baravar yengil
-    t = loader.load(quality.isPhone && path.startsWith('/textures/') ? path.replace('.webp', '-m.webp') : path)
+    t = loader.load(lite && path.startsWith('/textures/') ? path.replace('.webp', '-m.webp') : path)
     t.flipY = false // glTF UV'lari
     t.wrapS = t.wrapT = THREE.RepeatWrapping
     t.colorSpace = srgb ? THREE.SRGBColorSpace : THREE.NoColorSpace

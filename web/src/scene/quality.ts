@@ -29,9 +29,13 @@ const integrated = /Intel|UHD|Iris|Radeon\(TM\) Graphics|Radeon Graphics|Vega \d
 const forced = new URLSearchParams(location.search).get('q')
 
 export const quality = {
-  tier: (forced === 'low' || forced === 'medium' || forced === 'high' ? forced : isPhone || software ? 'low' : weak || integrated ? 'medium' : 'high') as Tier,
+  // Ichki grafika va kuchsiz kompyuter darhol eng yengil rejimdan boshlaydi: o'rtadan tushishni kutib qotmasin
+  tier: (forced === 'low' || forced === 'medium' || forced === 'high' ? forced : isPhone || software || integrated || weak ? 'low' : 'high') as Tier,
   isPhone,
 }
+
+/** Yarim o'lchamli teksturalar va osmonlar (-m.webp): video xotira ~4 baravar kam. Faqat yuklanishda tanlanadi. */
+export const lite = quality.tier === 'low'
 
 /**
  * Kadr narxi piksel soniga deyarli to'g'ri proporsional (RTX 3050: 0.8 Mpx — 10 ms, 3.3 Mpx — 18 ms).
